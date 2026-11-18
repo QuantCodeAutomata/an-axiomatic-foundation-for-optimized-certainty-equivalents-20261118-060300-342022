@@ -18,8 +18,17 @@ RiskMeasure = Callable[[np.ndarray], float]
 
 
 def fair_coin(n: int, rng: np.random.Generator) -> np.ndarray:
-    """A fair coin B in {0,1} with P(B=1) = 1/2, independent of any sample it multiplies."""
-    return (rng.random(n) < 0.5).astype(float)
+    """A fair coin B in {0,1} with P(B=1) = 1/2, independent of any sample it
+    multiplies. Uses an exactly balanced split (n // 2 heads, randomly
+    permuted) rather than i.i.d. Bernoulli(0.5) draws: an i.i.d. coin has an
+    empirical mean deviating from 1/2 by O(1/sqrt(n)), which, multiplied by a
+    transfer a, biases the fairness-premium estimate at the edges of a wide
+    grid of a (Monte Carlo variance-reduction choice, not specified in the
+    paper)."""
+    b = np.zeros(n)
+    b[: n // 2] = 1.0
+    rng.shuffle(b)
+    return b
 
 
 def check_normalization(rho: RiskMeasure, constants: list[float], n_samples: int = 1000,

@@ -1,0 +1,8 @@
+{
+  "n_families": 13,
+  "normalization_all_hold": true,
+  "sra_all_hold": true,
+  "sra_all_convex_order_verified": true,
+  "fc_all_hold": true,
+  "convergence_final_n_all_match": true
+}
