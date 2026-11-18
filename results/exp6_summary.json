@@ -1,0 +1,77 @@
+{
+  "fc_violation_holds_for_all_p": true,
+  "key_inequality_holds_for_all_p": true,
+  "per_p": {
+    "0.5": {
+      "p": 0.5,
+      "p_squared": 0.25,
+      "var_X": 0.0,
+      "var_Y": 1.0,
+      "prob_W_leq_0": 0.625,
+      "prob_threshold_p": 0.5,
+      "key_inequality_holds": true,
+      "var_W_at_a0": 0.0,
+      "target_average": 0.5,
+      "fc_violation": true,
+      "inf_premium": -1.0
+    },
+    "0.75": {
+      "p": 0.75,
+      "p_squared": 0.5625,
+      "var_X": 0.0,
+      "var_Y": 1.0,
+      "prob_W_leq_0": 0.78125,
+      "prob_threshold_p": 0.75,
+      "key_inequality_holds": true,
+      "var_W_at_a0": 0.0,
+      "target_average": 0.5,
+      "fc_violation": true,
+      "inf_premium": -1.0
+    },
+    "0.9": {
+      "p": 0.9,
+      "p_squared": 0.81,
+      "var_X": 0.0,
+      "var_Y": 1.0,
+      "prob_W_leq_0": 0.905,
+      "prob_threshold_p": 0.9,
+      "key_inequality_holds": true,
+      "var_W_at_a0": 0.0,
+      "target_average": 0.5,
+      "fc_violation": true,
+      "inf_premium": -1.0
+    },
+    "0.95": {
+      "p": 0.95,
+      "p_squared": 0.9025,
+      "var_X": 0.0,
+      "var_Y": 1.0,
+      "prob_W_leq_0": 0.9512499999999999,
+      "prob_threshold_p": 0.95,
+      "key_inequality_holds": true,
+      "var_W_at_a0": 0.0,
+      "target_average": 0.5,
+      "fc_violation": true,
+      "inf_premium": -1.0
+    },
+    "0.99": {
+      "p": 0.99,
+      "p_squared": 0.9801,
+      "var_X": 0.0,
+      "var_Y": 1.0,
+      "prob_W_leq_0": 0.99005,
+      "prob_threshold_p": 0.99,
+      "key_inequality_holds": true,
+      "var_W_at_a0": 0.0,
+      "target_average": 0.5,
+      "fc_violation": true,
+      "inf_premium": -1.0
+    }
+  },
+  "monte_carlo_cross_check": {
+    "p": 0.9,
+    "exact_var": 0.0,
+    "monte_carlo_var": 0.0,
+    "match": true
+  }
+}

@@ -1,0 +1,6 @@
+p,p_squared,var_X,var_Y,prob_W_leq_0,prob_threshold_p,key_inequality_holds,var_W_at_a0,target_average,fc_violation,inf_premium
+0.5,0.25,0.0,1.0,0.625,0.5,True,0.0,0.5,True,-1.0
+0.75,0.5625,0.0,1.0,0.78125,0.75,True,0.0,0.5,True,-1.0
+0.9,0.81,0.0,1.0,0.905,0.9,True,0.0,0.5,True,-1.0
+0.95,0.9025,0.0,1.0,0.9512499999999999,0.95,True,0.0,0.5,True,-1.0
+0.99,0.9801,0.0,1.0,0.99005,0.99,True,0.0,0.5,True,-1.0

@@ -1,0 +1,8 @@
+{
+  "closed_form_all_match": true,
+  "er_inequality_all_hold": true,
+  "er_equality_all_hold": true,
+  "monotonicity_violated_for_kappa_positive": true,
+  "monotonicity_rho_X": 6.0,
+  "monotonicity_rho_Y": 4.0
+}

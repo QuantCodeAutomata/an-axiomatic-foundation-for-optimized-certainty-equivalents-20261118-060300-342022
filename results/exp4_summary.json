@@ -1,0 +1,39 @@
+{
+  "ph_es_all_hold": true,
+  "ph_mixture_all_hold": true,
+  "prudence_es_all_hold": true,
+  "fatou_expectation_violates_prudence": true,
+  "fatou_es_all_satisfy_prudence_for_large_n": true,
+  "fatou_mixture_violates_prudence_for_lambda_positive": true,
+  "oce_matches_es_lambda0": [
+    {
+      "p": 0.5,
+      "oce_value": 0.7980479885798591,
+      "es_value": 0.7980479885798594,
+      "mixture_lambda0_value": 0.7980479885798594,
+      "matches": true
+    },
+    {
+      "p": 0.75,
+      "oce_value": 1.2693296208322988,
+      "es_value": 1.2693296208322988,
+      "mixture_lambda0_value": 1.2693296208322988,
+      "matches": true
+    },
+    {
+      "p": 0.9,
+      "oce_value": 1.7518762819748113,
+      "es_value": 1.7518762819748113,
+      "mixture_lambda0_value": 1.7518762819748113,
+      "matches": true
+    },
+    {
+      "p": 0.99,
+      "oce_value": 2.670794058782329,
+      "es_value": 2.670794058782329,
+      "mixture_lambda0_value": 2.670794058782329,
+      "matches": true
+    }
+  ],
+  "oce_matches_es_lambda0_all": true
+}
