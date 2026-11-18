@@ -169,10 +169,9 @@ table could not be matched, and are not used in this comparison.
 
 ## Not reproduced
 
-Nothing required by the selected experiments was left unreproduced: every
-axiom, counterexample and closed-form identity listed in `selected_experiments`
-exp_1 through exp_7 has a corresponding executable check in `exp/`, with
-results saved in `results/` and compared above. The only items not matched
+Every axiom, counterexample and closed-form identity targeted by experiments
+1 through 7 has a corresponding executable check in `exp/`, with results
+saved in `results/` and compared above. The only items not matched
 numerically are the specific decimal entries of the paper's Figure 2 table
 (Experiment 7), which are recorded as a deviation above rather than as a
 missing reproduction, since the qualitative and closed-form claims they
