@@ -1,0 +1,9 @@
+{
+  "xi_violates_FC_only": true,
+  "chi_violates_SRA_only": true,
+  "double_expectation_violates_N_only": true,
+  "mean_variance_violates_M_only": true,
+  "xi_inf_premium": 0.16666666666666674,
+  "chi_SRA_gap": 0.25022749999999994,
+  "mean_variance_M_gap": 2.0
+}

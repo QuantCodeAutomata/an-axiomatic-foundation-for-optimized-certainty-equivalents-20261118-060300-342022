@@ -17,8 +17,6 @@ formulas (Examples 1-4, Appendix A).
 
 import numpy as np
 
-from src.oce import loss_chi, oce
-
 
 def expectation(samples: np.ndarray) -> float:
     """E[X]."""
@@ -37,14 +35,21 @@ def value_at_risk(samples: np.ndarray, p: float) -> float:
 
 
 def expected_shortfall(samples: np.ndarray, p: float) -> float:
-    """Monte Carlo Expected Shortfall ES_p(X) = (1/(1-p)) E[X 1{X>=VaR_p(X)}] (Example 2)."""
+    """Expected Shortfall via the Rockafellar-Uryasev formula
+    ES_p(X) = VaR_p(X) + E[(X - VaR_p(X))_+] / (1-p) (Example 2), i.e. the OCE
+    inf_m {m + E[(X-m)_+]/(1-p)} evaluated at its minimizer m = VaR_p(X).
+
+    This equals (1/(1-p)) E[X 1{X>=VaR_p(X)}] only when the law has no atom
+    at VaR_p(X) (the continuous case); the Rockafellar-Uryasev form used here
+    is exact for atomic/discrete laws as well, since it does not depend on
+    how the probability mass exactly at the quantile is split between the
+    tail and its complement.
+    """
     if not 0.0 < p < 1.0:
         raise ValueError("p must be in (0, 1)")
     var = value_at_risk(samples, p)
-    tail = samples[samples >= var]
-    if tail.size == 0:
-        return var
-    return float(np.mean(tail))
+    tail_excess = float(np.mean(np.maximum(samples - var, 0.0)))
+    return var + tail_excess / (1.0 - p)
 
 
 def entropic_risk_measure(samples: np.ndarray, gamma: float) -> float:
@@ -73,16 +78,22 @@ def chi_risk_measure(samples: np.ndarray) -> float:
 
     The objective is piecewise linear in m with kinks only at the sample
     values, so its infimum over the empirical distribution is attained at one
-    of them; we evaluate there plus the two OCE-style bounds to be safe.
+    of them. Evaluated in O(n log n) via a single sort and prefix sums (the
+    direct pairwise formula is O(n^2) in memory and does not scale to the
+    sample sizes used elsewhere in this replication).
     """
     samples = np.asarray(samples, dtype=float)
-    candidates = np.unique(samples)
-    objective = candidates[:, None] + np.mean(
-        np.maximum(samples[None, :] - candidates[:, None], 0.0), axis=1, keepdims=True
-    ).squeeze(-1) + np.mean(samples[None, :] > candidates[:, None], axis=1)
-    # Compare with the generic (possibly non-exact, since loss is nonconvex) OCE search.
-    oce_value = oce(samples, loss_chi)
-    return float(min(np.min(objective), oce_value))
+    n = samples.size
+    sorted_x = np.sort(samples)
+    candidates = np.unique(sorted_x)
+    prefix_sum = np.concatenate(([0.0], np.cumsum(sorted_x)))
+    total_sum = prefix_sum[-1]
+    idx = np.searchsorted(sorted_x, candidates, side="right")  # count of x_i <= candidate
+    sum_below = prefix_sum[idx]
+    count_above = n - idx
+    sum_above = total_sum - sum_below
+    objective = candidates + (sum_above - candidates * count_above) / n + count_above / n
+    return float(np.min(objective))
 
 
 def double_expectation(samples: np.ndarray) -> float:
